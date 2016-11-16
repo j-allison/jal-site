@@ -1,0 +1,106 @@
+/* main styles */
+
+body
+    font-family gibson
+    font-weight 200
+    font-size 1.1rem
+
+a
+    color $darkgrey
+    
+    &:hover, &.active
+        color $primary
+
+h1
+    font-family adam
+    font-weight 400
+    font-size 3rem
+    color $darkgrey
+
+
+@media (min-width: 680px) and (max-width: 800px)
+    h1
+        font-size 2rem
+
+@media (max-width: 680px)
+    h1
+        display none !important
+
+
+/* HEADER */
+
+$headerHeight = 15rem
+$headerTopMargin = 12rem
+$headerTotalHeight = $headerHeight + $headerTopMargin
+
+.header
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height $headerHeight
+    background-color $white
+    margin-top $headerTopMargin
+    box-shadow 0rem 5rem 6rem -6rem rgba(0,0,0,0.3)
+
+    img.logo
+        display block
+        position absolute
+        left 50%
+        bottom -5rem
+        transform translate3d(-50%, 0, 0)
+        transform-origin left
+        transition transform .3s ease-out, left .3s ease-out
+
+    h1, ul.menu
+        display inline-block
+        pointer-events none
+        position absolute
+        top initial
+        bottom 0
+        opacity 0
+        transition opacity .3s ease-out
+
+    ul.menu
+        right 5rem
+        line-height 2rem
+
+        li
+            float left
+            margin 0 1rem
+
+    h1
+        left 10rem
+        width 18rem
+
+.header.small
+
+    img.logo
+        left 7rem
+        transform scale3d(0.3, 0.3, 1) translate3d(-50%, 5rem, 0)
+
+    h1, ul.menu
+        opacity 1
+        pointer-events initial
+
+    h1
+        transition opacity .3s ease-out .2s
+
+    ul.menu
+        transition opacity .3s ease-out .3s
+
+.header.fixed
+    margin-top -7rem
+    position fixed
+    top 0
+    left 0
+    height $headerHeight
+
+.content
+    margin-top $headerTotalHeight + 7rem
+    height 100%
+
+/* HOME */
+
+.home
+    padding 0 2rem
