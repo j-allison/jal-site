@@ -19,9 +19,6 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home">
-                <About />
-                <Portfolio />
-                <Contact />
             </div>
         );
     }
