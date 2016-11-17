@@ -25,6 +25,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-size": "^2.1.0",
     "gulp-stylus": "^2.3.1",
+    "gulp-uglifyjs": "^0.6.2",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "run-sequence": "^1.1.4",
