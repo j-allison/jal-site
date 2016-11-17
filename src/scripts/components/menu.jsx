@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-scroll';
+
+import {isMobile} from '../libraries/helpers';
 
 class Menu extends React.Component{
 
@@ -16,17 +18,14 @@ class Menu extends React.Component{
     componentWillUnmount = () => {
     }
 
-    componentDidReceiveProps = (nextProps) => {
-        console.dir(nextProps);
-    }
-
     render() {
+        var offset = isMobile() ? -80 : -140;
 
         return (
             <ul className="menu">
-                <li><Link to="/about">About</Link></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><Link activeClass="active" spy={true} smooth={true} offset={offset} duration={700} to="about">About</Link></li>
+                <li><Link activeClass="active" spy={true} smooth={true} offset={offset} duration={700} to="portfolio">Portfolio</Link></li>
+                <li><Link activeClass="active" spy={true} smooth={true} offset={offset} duration={700} to="contact">Contact</Link></li>
             </ul>
         );
     }
@@ -34,6 +33,3 @@ class Menu extends React.Component{
 }
 
 export default Menu;
-
-
-                // <span className="primary">J</span>ust <span className="primary">A</span> <span className="primary">L</span>lama

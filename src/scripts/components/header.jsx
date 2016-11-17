@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import {animateScroll} from 'react-scroll';
 
 import Menu from './menu.jsx';
 
@@ -18,7 +20,22 @@ class Header extends React.Component{
         };
     }
 
+    /*
+    setHeaderStateByLocation = (location) => {
+        this.setState({
+            smallHeader: location.pathname !== '/',
+            fixedHeader: location.pathname !== '/'
+        });
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        this.setHeaderStateByLocation(nextProps.router.getCurrentLocation());
+    }
+    */
+
     componentDidMount = () => {
+        // this.setHeaderStateByLocation(this.props.router.getCurrentLocation());
+
         window.addEventListener('scroll', this.handleScroll);
     }
 
@@ -27,6 +44,10 @@ class Header extends React.Component{
     }
 
     handleScroll = (e) => {
+        /*// Do not use minified header unless we're on home page
+        if(this.props.router.getCurrentLocation().pathname !== '/')
+            return;*/
+
         if(e.srcElement.body.scrollTop > this.scrollTriggerSmall && !this.state.smallHeader)
             this.setState({smallHeader: true});
         else if(e.srcElement.body.scrollTop < this.scrollTriggerSmall && this.state.smallHeader)
@@ -38,24 +59,24 @@ class Header extends React.Component{
             this.setState({fixedHeader: false});
     }
 
+    handleScrollTop = (e) => {
+        animateScroll.scrollToTop({duration: 500});
+        e.preventDefault();
+    }
+
     render() {
         return (
             <div className={cx('header', {'small': this.state.smallHeader, 'fixed': this.state.fixedHeader})}>
-                <h1>Just A Llama</h1>
+                <h1><a href="#" onClick={this.handleScrollTop}>Just A Llama</a></h1>
                 <Menu />
-                <img className="logo" src={window.PATHS.images + '/llama-ds.png'} />
+                <div className="logo">
+                    <img className="llama" src={window.PATHS.images + '/llama-ds.png'} />
+                    <a href="/assets/pdf/2016-JAllison-CV-FR.pdf" target="#" className="cv"></a>
+                </div>
             </div>
         );
     }
 
 }
 
-Header.contextTypes = {
-    location: React.PropTypes.object
-}
-
-
-export default Header;
-
-
-                // <span className="primary">J</span>ust <span className="primary">A</span> <span className="primary">L</span>lama
+export default withRouter(Header);

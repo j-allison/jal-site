@@ -3,12 +3,13 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './pages/app.jsx';
 import Home from './pages/home.jsx';
-import About from './pages/about.jsx';
 
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path="about" component={About}/>
+    {/*<Route path="about" component={About}/>
+    <Route path="portfolio" component={Portfolio}/>
+    <Route path="contact" component={Contact}/>*/}
   </Route>
 );
 

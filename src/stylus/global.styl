@@ -1,5 +1,7 @@
 /* main styles */
 
+$imgPath = "/assets/images/"
+
 body
     font-family gibson
     font-weight 200
@@ -22,16 +24,16 @@ h1
     h1
         font-size 2rem
 
-@media (max-width: 680px)
-    h1
-        display none !important
-
-
 /* HEADER */
 
 $headerHeight = 15rem
 $headerTopMargin = 12rem
+
+$headerMobileHeight = 8rem
+$headerMobileTopMargin = 10rem
+
 $headerTotalHeight = $headerHeight + $headerTopMargin
+$headerMobileTotalHeight = $headerMobileHeight + $headerMobileTopMargin
 
 .header
     position absolute
@@ -43,7 +45,7 @@ $headerTotalHeight = $headerHeight + $headerTopMargin
     margin-top $headerTopMargin
     box-shadow 0rem 5rem 6rem -6rem rgba(0,0,0,0.3)
 
-    img.logo
+    .logo
         display block
         position absolute
         left 50%
@@ -51,6 +53,21 @@ $headerTotalHeight = $headerHeight + $headerTopMargin
         transform translate3d(-50%, 0, 0)
         transform-origin left
         transition transform .3s ease-out, left .3s ease-out
+
+        .cv
+            display block
+            height 50px
+            width 50px
+            background-image url($imgPath + "dl-btn-1.png")
+            position absolute
+            bottom 5.2rem
+            left 6.5rem
+            opacity 1
+            transition opacity .3s ease-out, background .1s ease-out
+            cursor pointer
+
+        .cv:hover
+            background-image url($imgPath + "dl-btn-2.png")
 
     h1, ul.menu
         display inline-block
@@ -69,15 +86,37 @@ $headerTotalHeight = $headerHeight + $headerTopMargin
             float left
             margin 0 1rem
 
+        a
+            cursor pointer
+
+        a:after
+            content ''
+            display block
+            margin auto
+            height 3px
+            width 0px
+            background transparent
+            transition width .3s ease, background-color .5s ease
+
+        a.active:after
+            width 100%
+            background $primary
+
+
     h1
         left 10rem
         width 18rem
 
 .header.small
 
-    img.logo
+    .logo
         left 7rem
         transform scale3d(0.3, 0.3, 1) translate3d(-50%, 5rem, 0)
+
+        .cv
+            opacity 0
+            pointer-events none
+
 
     h1, ul.menu
         opacity 1
@@ -94,13 +133,43 @@ $headerTotalHeight = $headerHeight + $headerTopMargin
     position fixed
     top 0
     left 0
-    height $headerHeight
 
 .content
-    margin-top $headerTotalHeight + 7rem
-    height 100%
+    padding 0 2rem
+    margin-top $headerTopMargin
 
 /* HOME */
 
 .home
-    padding 0 2rem
+    margin-top $headerTotalHeight + 7rem
+
+
+
+/* Mobile overrides */
+/* ------------------------------------------- */
+
+@media (max-width: 680px)
+    h1
+        display none !important
+
+    .header
+        height $headerMobileHeight
+        margin-top $headerMobileTopMargin
+        box-shadow 0rem 5rem 10rem -3rem rgba(0,0,0,0.3)
+
+        ul.menu
+            right 0
+
+    .header.small, .header.fixed
+        margin-top -4rem
+        position fixed
+
+        .logo
+            left 3rem
+            transform scale3d(0.15, 0.15, 1) translate3d(-50%, 19rem, 0)
+
+    .home
+        margin-top $headerMobileTotalHeight + 7rem
+
+    .content
+        margin-top 0

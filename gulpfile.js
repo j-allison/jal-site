@@ -70,6 +70,7 @@ gulp.task('scripts', function() {
       },
       module: {
         loaders: [{
+          test: /\.jsx?$/,
           exclude: /node_modules/,
           loader: 'babel-loader'
         }]
@@ -109,6 +110,8 @@ gulp.task('serve', function() {
 
 gulp.task('watch', function() {
   gulp.watch(SRC + 'index.html', ['html']);
+  gulp.watch(SRC + 'assets/*', ['assets']);
+  gulp.watch(SRC + 'assets/*/*', ['assets']);
   gulp.watch(SRC + 'stylus/*.styl', ['styles']);
   gulp.watch(SRC + 'scripts/**/*.js', ['scripts']);
   gulp.watch(SRC + 'scripts/**/*.jsx', ['scripts']);
