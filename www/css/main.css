@@ -314,17 +314,17 @@ h1 {
   display: block;
   height: 50px;
   width: 50px;
-  background-image: url("/assets/images/dl-btn-1.png");
+  background: url("/assets/images/dl-btn.png") no-repeat 0 0;
   position: absolute;
   bottom: 5.2rem;
   left: 6.5rem;
   opacity: 1;
-  -webkit-transition: opacity 0.3s ease-out, background 0.1s ease-out;
-  transition: opacity 0.3s ease-out, background 0.1s ease-out;
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
   cursor: pointer;
 }
 .header .logo .cv:hover {
-  background-image: url("/assets/images/dl-btn-2.png");
+  background-position: -50px 0;
 }
 .header h1,
 .header ul.menu {
