@@ -69,15 +69,21 @@ gulp.task('scripts', function() {
         filename: 'main.js'
       },
       module: {
-        loaders: [{
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-          query:
+        loaders: [
           {
-            presets: ['es2015', 'stage-0', 'react']
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            query:
+            {
+              presets: ['es2015', 'stage-0', 'react']
+            }
+          },
+          {
+            test: /\.json$/,
+            loader: 'json-loader'
           }
-        }]
+        ]
       }
     }))
     .on('error', onError)
@@ -119,6 +125,7 @@ gulp.task('watch', function() {
   gulp.watch(SRC + 'stylus/*.styl', ['styles']);
   gulp.watch(SRC + 'scripts/**/*.js', ['scripts']);
   gulp.watch(SRC + 'scripts/**/*.jsx', ['scripts']);
+  gulp.watch(SRC + 'scripts/**/*.json', ['scripts']);
 });
 
 gulp.task('clean', function(cb) {
