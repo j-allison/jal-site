@@ -55,14 +55,16 @@ gulp.task('styles',function(cb) {
 
 //------------------------------------------------------------------------------
 
-var webpack = require('webpack-stream'),
+var webpackStream = require('webpack-stream'),
     entrypoint = SRC + 'scripts/main.js';
 
 gulp.task('scripts', function() {
   return gulp.src(entrypoint)
-    .pipe(webpack({
+    .pipe(webpackStream({
       entry: {
-        app: entrypoint
+        app: [
+          entrypoint
+        ]
       },
       output: {
         path: WWW,
@@ -73,11 +75,7 @@ gulp.task('scripts', function() {
           {
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
-            query:
-            {
-              presets: ['es2015', 'stage-0', 'react']
-            }
+            loader: 'babel-loader'
           },
           {
             test: /\.json$/,
