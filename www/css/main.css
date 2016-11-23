@@ -268,7 +268,7 @@ body {
   font-size: 1.1rem;
 }
 a {
-  color: #4a4a4a;
+  color: #444;
 }
 a:hover,
 a.active {
@@ -278,12 +278,119 @@ h1 {
   font-family: adam;
   font-weight: 400;
   font-size: 3rem;
-  color: #4a4a4a;
+  color: #444;
 }
 @media (min-width: 680px) and (max-width: 800px) {
   h1 {
     font-size: 2rem;
   }
+}
+.aboutSection {
+  width: 80%;
+  margin: 0 auto 3rem auto;
+}
+.aboutSection > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+.aboutSection .aboutDescription {
+  width: 50%;
+  margin-left: 5rem;
+}
+.test {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  -webkit-transition: opacity 0.7s ease-out 0.2s;
+  transition: opacity 0.7s ease-out 0.2s;
+}
+.test.open {
+  opacity: 1;
+}
+.test div.piece {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+  transition: -webkit-transform 0.7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+  transition: transform 0.7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+  transition: transform 0.7s cubic-bezier(0.64, 0.57, 0.67, 1.53), -webkit-transform 0.7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+  -webkit-perspective: 2000px;
+          perspective: 2000px;
+}
+.test div.piece figure {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.test .piece1 {
+  background: url("/assets/images/test/1.png");
+  bottom: 0;
+  left: 0;
+}
+.test .piece2 {
+  bottom: 0;
+  left: 150px;
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+}
+.test .piece2 .front {
+  background: url("/assets/images/test/2.png");
+}
+.test .piece2 .back {
+  background: url("/assets/images/test/2-back.png");
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+.test .piece2.flipped {
+  -webkit-transform: rotateY(-180deg) translateZ(-2px);
+          transform: rotateY(-180deg) translateZ(-2px);
+}
+.test .piece3 {
+  bottom: 150px;
+  right: 0;
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+}
+.test .piece3 .front {
+  background: url("/assets/images/test/3.png");
+}
+.test .piece3 .back {
+  background: url("/assets/images/test/3-back.png");
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+}
+.test .piece3.flipped {
+  -webkit-transform: rotateX(-180deg) translateZ(-2px);
+          transform: rotateX(-180deg) translateZ(-2px);
+}
+.test .piece4 {
+  bottom: 0;
+  right: 150px;
+  -webkit-transform-origin: right;
+      -ms-transform-origin: right;
+          transform-origin: right;
+}
+.test .piece4 .front {
+  background: url("/assets/images/test/4.png");
+}
+.test .piece4 .back {
+  background: url("/assets/images/test/4-back.png");
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+.test .piece4.flipped {
+  -webkit-transform: rotateY(180deg) translateZ(-2px);
+          transform: rotateY(180deg) translateZ(-2px);
 }
 .header {
   position: absolute;
@@ -292,8 +399,72 @@ h1 {
   width: 100%;
   height: 15rem;
   background-color: #fff;
+  z-index: 100;
   margin-top: 12rem;
   box-shadow: 0rem 5rem 6rem -6rem rgba(0,0,0,0.3);
+}
+.header .langSelector {
+  width: 3rem;
+  cursor: pointer;
+  position: absolute;
+  right: 2rem;
+  top: 13rem;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+.header .langSelector button {
+  position: relative;
+  background: #fff;
+  border: none;
+  display: inline-block;
+  border-radius: 0.2rem;
+  padding: 0;
+  width: 3rem;
+  outline: none;
+}
+.header .langSelector button span {
+  line-height: 2rem;
+  vertical-align: bottom;
+  font-size: 1.2rem;
+}
+.header .langSelector button span::after {
+  line-height: 2rem;
+  font-size: 0.5rem;
+  vertical-align: middle;
+  content: "▼";
+  margin-left: 0.5rem;
+  color: #444;
+}
+.header .langSelector button::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.2);
+  border-radius: 0.2rem;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.header .langSelector button:hover::after {
+  opacity: 1;
+}
+.header .langSelector ul {
+  display: none;
+}
+.header .langSelector.open ul {
+  display: block;
+  text-align: center;
+}
+.header .langSelector.open ul li:hover {
+  background: #f4f4f4;
+}
+.header .langSelector.open button::after {
+  opacity: 1;
 }
 .header .logo {
   display: block;
@@ -338,7 +509,7 @@ h1 {
   transition: opacity 0.3s ease-out;
 }
 .header ul.menu {
-  right: 5rem;
+  right: 6rem;
   line-height: 2rem;
 }
 .header ul.menu li {
@@ -376,7 +547,8 @@ h1 {
   pointer-events: none;
 }
 .header.small h1,
-.header.small ul.menu {
+.header.small ul.menu,
+.header.small .langSelector {
   opacity: 1;
   pointer-events: initial;
 }
@@ -384,7 +556,8 @@ h1 {
   -webkit-transition: opacity 0.3s ease-out 0.2s;
   transition: opacity 0.3s ease-out 0.2s;
 }
-.header.small ul.menu {
+.header.small ul.menu,
+.header.small .langSelector {
   -webkit-transition: opacity 0.3s ease-out 0.3s;
   transition: opacity 0.3s ease-out 0.3s;
 }
@@ -399,7 +572,7 @@ h1 {
   margin-top: 12rem;
 }
 .home {
-  margin-top: 34rem;
+  margin-top: 30rem;
 }
 @media (max-width: 680px) {
   h1 {
@@ -410,8 +583,15 @@ h1 {
     margin-top: 10rem;
     box-shadow: 0rem 5rem 10rem -3rem rgba(0,0,0,0.3);
   }
+  .header .langSelector {
+    width: 3rem;
+    cursor: pointer;
+    position: absolute;
+    right: 0rem;
+    top: 6rem;
+  }
   .header ul.menu {
-    right: 0;
+    right: 3rem;
   }
   .header.small,
   .header.fixed {
@@ -425,7 +605,7 @@ h1 {
             transform: scale3d(0.15, 0.15, 1) translate3d(-50%, 19rem, 0);
   }
   .home {
-    margin-top: 25rem;
+    margin-top: 21rem;
   }
   .content {
     margin-top: 0;
