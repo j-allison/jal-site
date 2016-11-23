@@ -1,8 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import {animateScroll} from 'react-scroll';
+import { animateScroll } from 'react-scroll';
 
 import Menu from './menu.jsx';
+import LangSelector from './lang-selector.jsx';
 
 import cx from 'classnames';
 
@@ -70,9 +71,10 @@ class Header extends React.Component{
                 <h1><a href="#" onClick={this.handleScrollTop}>Just A Llama</a></h1>
                 <Menu />
                 <div className="logo">
-                    <img className="llama" src={window.PATHS.images + '/llama-ds.png'} />
+                    <img className="llama" src={'/assets/images/llama-ds.png'} /> {/* GLOBALCONSTANT */}
                     <a href="/assets/pdf/2016-JAllison-CV-FR.pdf" target="#" className="cv"></a>
                 </div>
+                <LangSelector />
             </div>
         );
     }
